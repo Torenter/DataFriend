@@ -8,7 +8,7 @@ def adres(ask):
     if ask == 1:
         c = input('Введите путь до базы. \nНапример: C:\\User\\admin\\Desktop\\DateBase\n')#Принимаемый ввод подставляется как путь
         return c
-    elif ask == 2 or 3:
+    elif ask !=4:
         c = input('Введите путь до базы. \nНапример: C:\\User\\admin\\Desktop\\DateBase\n')#Принимаемый ввод подставляется как путь
         k = input ('Введите путь до Vals файла. \nНапример: C:\\User\\admin\\Desktop\\Data_vals\n')#Принимаемый ввод подставляется как путь
         return c, k
