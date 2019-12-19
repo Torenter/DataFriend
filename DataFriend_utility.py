@@ -51,7 +51,7 @@ def update_vals(c,k):
     df_vals = df_vals.fillna ( 'Nin' ) #Забивает пустые ячейки словом
     q={}# Словарь на который разбирается валс файл
     schotchik=0# Хз, куда его еще присунуть, но он должен быть инициализирован до итерации.
-    s=[df_vals.loc[df_vals['variable']==elements].index[0] for elements in df_vals['variable'] if elements!='Nin']
+    s=[df_vals.loc[df_vals['variable']==elements].index[0] for elements in df_vals['variable'] if elements!='Nin']#Генератор, запускает цикл в котором сложенно условие, после выполнения которого используется извлечение индекса строки df_vals.loc[df_vals['variable']==elements].index[0]
     d=[i-1 for i in s]#использован генератор вместо обычного цикла
     d.append(len(df_vals.index))#добавление последнего индекса для последнего среза
     for elements in df_vals['variable']:# В цикле реализуется срез значений по индексу
