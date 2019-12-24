@@ -1,8 +1,8 @@
-import pandas as pd
+from pandas import read_csv
 def recod_base(c,k):
     """Использует существующий валс файл и перекодирует базу, используя столбец index"""
-    df=pd.read_csv('{}.csv'.format (c) , encoding = 'utf-8' , sep = ';',dtype = str )
-    df_vals=pd.read_csv('{}.csv'.format(k), encoding='utf-8',sep=';')
+    df=read_csv('{}.csv'.format (c) , encoding = 'utf-8' , sep = ';',dtype = str )
+    df_vals=read_csv('{}.csv'.format(k), encoding='utf-8',sep=';')
     #Заполним пустые строки значениями переменной свыше. Вдруг пригодиццо
     df_vals['variable']=df_vals['variable'].ffill()#Берет и забивает пустые ячейки в первом столбце значением которое встретил, и забивает до следующего,как только встречает другое, то используе его
     # А давайте сгруппируем

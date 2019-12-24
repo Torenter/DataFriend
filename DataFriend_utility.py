@@ -5,7 +5,6 @@ from update import update_vals
 from recode import recod_base
 from pandas import read_csv
 from pandas import DataFrame
-from pandas import read_excel
 
 def instruct():
     """Выводит на экран инструкцию"""
