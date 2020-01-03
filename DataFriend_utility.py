@@ -16,8 +16,7 @@ def instruct():
     4- Разобрать xlsx файл на vars и vals
     ''')
 
-ask = None
-while ask!=0:
+while True:
     instruct()
     ask=int(input('введите действие: '))
     if ask==1:
