@@ -42,7 +42,7 @@ def update_vals(c,k):
 
     row = 0
     for cus_key, columns in q.items():
-        final_frame.loc[row, 'variables'] = cus_key
+        final_frame.loc[row, 'variable'] = cus_key
         for enum, data_row in enumerate(columns[0]):
             final_frame.loc[row, final_frame.columns[2]] = data_row
             for inner_enum, column in enumerate(columns[1:]):
