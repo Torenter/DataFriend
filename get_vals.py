@@ -4,7 +4,7 @@ def get_vals(c,read_csv,DataFrame):
     df = df.select_dtypes ( include = 'object' )#усечения файла до столбцов содержащих только строковые значения
     df = df.fillna ( 'Nin' )#замена пропущенных значений в таблице на Nin
     a = df.columns.tolist()#получение списка содержащего названия всех столбцов
-    k = DataFrame ( columns= ['variables', 'index', 'valuess', 'Df_expr', 'Df_metr', 'rectrict_W'] )#создание пустого датафрейма,из которого создается валс
+    k = DataFrame ( columns= ['variable', 'index', 'values', 'Df_expr', 'Df_metr', 'rectrict_W'] )#создание пустого датафрейма,из которого создается валс
     e = 1 # при первой итерации встает на первую строку, потому что нулевой строки в экселе нет
     for i in a:#берез значение из списка с именами переменных
         k.loc [ e ,'variable' ] = i # записывает это значение в ячейку валса
