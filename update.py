@@ -38,7 +38,7 @@ def update_vals(c,k):
             text=('была добавлена новая переменная-',str(i),'\nсо значениями:',str(x[i]),'\n')
             log.writelines(text)
     log.close
-    final_frame = pd.DataFrame({'variable': [], 'index': [], 'values': [], 'Df_expr': [], 'Df_metr': [], 'rectrict_W': []})
+    final_frame = pd.DataFrame({'variable': [], 'index': [], 'values': [], 'Df_expr': [], 'Df_metr': [], 'restrict_W': []})
 
     row = 0
     for cus_key, columns in q.items():
