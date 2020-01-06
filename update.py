@@ -20,6 +20,7 @@ def update_vals(c,k):
             Df_metr=recode.loc[col]['Df_metr']
             restrict_W=recode.loc[col]['restrict_W']
             q[variable]=[values,Df_expr,Df_metr,restrict_W]
+    log=open('{}_log.txt'.format(k),'a',encoding='utf-8')
     for i in x:# Взять ключь из словаря для базы
         if i in q:#Проверка наличия такого же ключа в словаре из валс файла
             for e in x[i]:#Итерация по значениям ключей словаря для базы, если этого значения нет под ключем из словаря для валса,то добавляет его 
@@ -30,16 +31,13 @@ def update_vals(c,k):
                         continue
                     else:
                         q[i][0].append(e)#добавление нехватающего значения.
-                        log=open('{}_log.txt'.format(k),'a',encoding='utf-8')
                         text=('в ',str(i),' было добавленно:',str(e),'\n')
                         log.writelines(text)
-                        log.close
         else:
             q[i]=[x[i]]#Если ключь не был найдет, то он добавляется в словарь для валса со всеми значениями
-            log=open('{}_log.txt'.format(k),'a',encoding='utf-8')
             text=('была добавлена новая переменная-',str(i),'\nсо значениями:',str(x[i]),'\n')
             log.writelines(text)
-            log.close
+    log.close
     final_frame = pd.DataFrame({'variables': [], 'index': [], 'valuess': [], 'Df_expr': [], 'Df_metr': [], 'rectrict_W': []})
 
     row = 0
