@@ -5,6 +5,7 @@ from update import update_vals
 from recode import recod_base
 from pandas import read_csv
 from pandas import DataFrame
+from discern_spss import spss_to_vals
 
 def instruct():
     """Выводит на экран инструкцию"""
@@ -21,7 +22,10 @@ while True:
     ask=int(input('введите действие: '))
     if ask==1:
         c = address(ask)
-        get_vals(c,read_csv,DataFrame)
+        if c[-3:] == 'csv':
+            get_vals(c,read_csv,DataFrame)
+        else:
+            spss_to_vals(c)
     elif ask==2:
         c,k = address(ask)
         update_vals(c,k)

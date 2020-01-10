@@ -1,7 +1,7 @@
 def address(ask):
     """Получает путь до базы и валса для передачи функциям обработчикам"""
     if ask == 1:
-        c = input('Введите путь до базы. \nНапример: C:\\User\\admin\\Desktop\\DateBase\n')#Принимаемый ввод подставляется как путь
+        c = input('Введите путь до базы. \nНапример: C:\\User\\admin\\Desktop\\DateBase.csv or sav\n')#Принимаемый ввод подставляется как путь
         return c
     elif ask == 2 or ask == 3:
         c = input('Введите путь до базы. \nНапример: C:\\User\\admin\\Desktop\\DateBase\n')#Принимаемый ввод подставляется как путь
