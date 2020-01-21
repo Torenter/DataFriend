@@ -1,5 +1,6 @@
 import savReaderWriter as sav
 import pandas as pd
+from numpy import nan
 def spss_to_vals(c):
     l=c[:-4]
     with sav.SavHeaderReader(c, ioUtf8=True) as header:
@@ -12,19 +13,15 @@ def spss_to_vals(c):
         for cus_keys in labels[k]:#берем значение из вложенного словаря
             cus_list.append(labels[k][cus_keys])#добавляем в список
         q[k].append(cus_list)#добавляем список тем самым сохраням последовательность где список - это столбец в vals
-    final_frame = pd.DataFrame({'variable': [], 'index': [], 'values': [], 'Df_expr': [], 'Df_metr': [], 'restrict_W': []})
-
-    row = 0
-    for cus_key, columns in q.items():
-        final_frame.loc[row, 'variable'] = cus_key
-        for enum, data_row in enumerate(columns[0]):
-            final_frame.loc[row, final_frame.columns[1]] = data_row
-            for inner_enum, column in enumerate(columns[1:]):
-                if len(column) >= (enum+1):
-                    final_frame.loc[row, final_frame.columns[inner_enum + 2]] = column[enum]
-            row += 1
-    final_frame.dropna(inplace=True, how='all')
-    final_frame.astype({'index': 'int64'})
-    final_frame.to_csv( '{}_vals.csv' .format(l), sep=';' , index=False )
+    df= pd.DataFrame(q)
+    df=df.T.reset_index()
+    df.columns = ['variable', 'index', 'values']
+    df=df.apply(pd.Series.explode)
+    ffinv = lambda s: s.mask(s == s.shift())
+    df=df.assign(variable=ffinv(df['variable']))
+    df['Df_metr']=nan
+    df['restrict_W']=nan
+    df['total div']=nan
+    df.to_csv( '{}_vals.csv' .format(l), sep=';' , index=False )
     if __name__ == "__main__":
         print("Модуль должен быть импортирован")
