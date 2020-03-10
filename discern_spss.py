@@ -13,15 +13,15 @@ def spss_to_vals(c):
         for cus_keys in labels[k]:#берем значение из вложенного словаря
             cus_list.append(labels[k][cus_keys])#добавляем в список
         q[k].append(cus_list)#добавляем список тем самым сохраням последовательность где список - это столбец в vals
-    df= pd.DataFrame(q)
-    df=df.T.reset_index()
-    df.columns = ['variable', 'index', 'values']
-    df=df.apply(pd.Series.explode)
+    df= pd.DataFrame(q)#запихиваем сразу в таком формате в DF
+    df=df.T.reset_index()#Транспонируем и т.к. название переменной попало в индекс, вытаскиваем его от туда
+    df.columns = ['variable', 'index', 'values']#переименовываем столбы
+    df=df.apply(pd.Series.explode)#списки содержались в строках,данна команда раскрывает списки(взрывает) и каждое отдельно значение помещается в ячейку
     ffinv = lambda s: s.mask(s == s.shift())
     df=df.assign(variable=ffinv(df['variable']))
-    df['Df_metr']=nan
-    df['restrict_W']=nan
-    df['total div']=nan
+    df['Df_metr']=nan#Добавление нехватающего столбца
+    df['restrict_W']=nan#Добавление нехватающего столбца
+    df['total div']=nan#Добавление нехватающего столбца
     df.to_csv( '{}_vals.csv' .format(l), sep=';' , index=False )
     if __name__ == "__main__":
         print("Модуль должен быть импортирован")
